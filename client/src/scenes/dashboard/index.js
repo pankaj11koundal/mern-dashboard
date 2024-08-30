@@ -1,17 +1,17 @@
 import React from 'react'
 import { Email, Traffic } from '@mui/icons-material';
-import { Box, useTheme, useMediaQuery } from '@mui/material';
+import { Box, useTheme, useMediaQuery, Typography } from '@mui/material';
 import Header from 'components/Header';
 import { useGetDashboardQuery } from 'state/api';
 import StatBox from 'components/StatBox';
 import OverviewLineChart from 'components/OverviewLineChart';
+import PieChartComponent from 'components/PieChartComponent';
 
 const Dashboard = () => {
   const theme = useTheme();
-  const isNonMediumScreens = useMediaQuery('(mid-width: 1200px)');
+  // const isNonMediumScreens = useMediaQuery('(mid-width: 1200px)');
+  const isNonMediumScreens = useMediaQuery("(min-width: 1200px)")
   const { data, isLoading } = useGetDashboardQuery();
-  console.log(data);
-
   return (
     <Box m='1.5rem 2.5rem'>
       <Header title="DASHBOARD" subTitle="Welcome to your Dashboard" />
@@ -76,6 +76,21 @@ const Dashboard = () => {
             />
           }
         />
+
+        {/* Row 2 */}
+        <Box 
+          gridColumn='span 8'
+          gridRow='span 3'
+          backgroundColor={theme.palette.background.alt}
+          p="1.5rem"
+          borderRadius='0.55rem'
+        >
+          <Typography variant='h6' sx={{ color: theme.palette.secondary[100]}}>
+            Sales by Category
+          </Typography>
+          <PieChartComponent view='pestle' isDashboard={true} />
+        </Box>
+
       </Box>
     </Box>
   )

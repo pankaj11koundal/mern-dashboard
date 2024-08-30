@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material';
 import { useGetPieChartQuery } from 'state/api'
 
 
-const PieChartComponent = ({ view }) => {
+const PieChartComponent = ({ view, isDashboard=true }) => {
 
   function getColor() {
     const hue = Math.floor(Math.random() * 360); // Random hue between 0 and 360
@@ -83,8 +83,8 @@ const PieChartComponent = ({ view }) => {
             anchor: 'bottom',
             direction: 'row',
             justify: false,
-            translateX: 0,
-            translateY: 56,
+            translateX: isDashboard ? 20 : 0,
+            translateY: isDashboard ? 50 : 56,
             itemsSpacing: 0,
             itemWidth: 100,
             itemHeight: 18,
